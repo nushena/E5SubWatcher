@@ -1,6 +1,6 @@
 <?php
 // 读取JSON文件
-$jsonFile = 'e5_sub.json';
+$jsonFile = 'output.json';
 
 // 读取JSON数据
 if (file_exists($jsonFile)) {
