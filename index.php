@@ -114,6 +114,16 @@ if (file_exists($jsonFile)) {
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
         }
 
+        /* 确保卡片内所有文本元素在深色模式下可见 */
+        body.dark-mode .card a:not(.btn):not(.badge) {
+            color: var(--secondary-color);
+        }
+
+        body.dark-mode .alert-warning {
+            background-color: rgba(255, 193, 7, 0.2);
+            color: #f8d7a4;
+        }
+
         .card-header {
             border-bottom: 1px solid rgba(0, 0, 0, 0.1);
             font-weight: 600;
@@ -122,6 +132,7 @@ if (file_exists($jsonFile)) {
 
         body.dark-mode .card-header {
             border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--dark-text);
         }
 
         .card-body {
@@ -136,6 +147,10 @@ if (file_exists($jsonFile)) {
         .info-value {
             font-size: 1.5rem;
             font-weight: 600;
+        }
+
+        body.dark-mode .info-value {
+            color: var(--dark-text);
         }
 
         .info-label {
@@ -786,6 +801,8 @@ if (file_exists($jsonFile)) {
                     console.log('找到图表容器，开始创建图表实例');
                     const isDarkMode = document.body.classList.contains('dark-mode');
                     const textColor = isDarkMode ? '#f0f0f0' : '#323130';
+                    const gridColor = isDarkMode ? 'rgba(255, 255, 255, 0.1)' : 'rgba(0, 0, 0, 0.1)';
+                    const unusedColor = isDarkMode ? '#555555' : '#dddddd';
 
                     const licenseChart = new Chart(ctx, {
                         type: 'doughnut',
@@ -795,7 +812,7 @@ if (file_exists($jsonFile)) {
                                 data: [<?php echo $consumedUnits; ?>, <?php echo $totalUnits - $consumedUnits; ?>],
                                 backgroundColor: [
                                     '#0078d4',
-                                    '#dddddd'
+                                    unusedColor
                                 ],
                                 borderWidth: 0
                             }]
