@@ -1,6 +1,6 @@
 <?php
 // 读取JSON文件
-$jsonFile = 'output.json';
+$jsonFile = 'Output/output.json';
 
 // 读取JSON数据
 if (file_exists($jsonFile)) {
