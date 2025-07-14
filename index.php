@@ -520,13 +520,13 @@ if (file_exists($jsonFile)) {
                 <div class="footer-item">
                     <i class="fas fa-heart"></i> Cursor真好用(bushi)
                 </div>
-                <div class="footer-item">
+                <div class="footer-item" onclick="window.location.href='mailto:nushen666@qq.com';" style="cursor: pointer;">
                     <i class="fas fa-envelope"></i> <a href="mailto:nushen666@qq.com">nushen666@qq.com</a>
                 </div>
-                <div class="footer-item">
+                <div class="footer-item" onclick="window.open('<?php echo $jsonFile; ?>', '_blank');" style="cursor: pointer;">
                     <i class="fas fa-file-code"></i> <a href="<?php echo $jsonFile; ?>" target="_blank">查看JSON数据</a>
                 </div>
-                <div class="footer-item">
+                <div class="footer-item" onclick="window.open('https://github.com/nushena/E5SubWatcher', '_blank');" style="cursor: pointer;">
                     <i class="fab fa-github"></i> <a href="https://github.com/nushena/E5SubWatcher" target="_blank">GitHub</a>
                 </div>
             </div>
