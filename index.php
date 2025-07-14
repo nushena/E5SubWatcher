@@ -65,11 +65,11 @@ if (file_exists($jsonFile)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>微软E5订阅状态检测</title>
     <!-- Bootstrap 5 CSS -->
-    <link href="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.7/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://s4.zstatic.net/ajax/libs/twitter-bootstrap/5.3.7/css/bootstrap.min.css" rel="stylesheet">
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdn.bootcdn.net/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+    <link rel="stylesheet" href="https://s4.zstatic.net/ajax/libs/font-awesome/6.7.2/css/all.min.css">
     <!-- Chart.js -->
-    <script src="https://cdn.bootcdn.net/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
+    <script src="https://lf6-cdn-tos.bytecdntp.com/cdn/expire-1-M/Chart.js/3.7.1/chart.min.js"></script>
     <script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <style>
         :root {
@@ -523,6 +523,12 @@ if (file_exists($jsonFile)) {
                 <div class="footer-item">
                     <i class="fas fa-envelope"></i> <a href="mailto:nushen666@qq.com">nushen666@qq.com</a>
                 </div>
+                <div class="footer-item">
+                    <i class="fas fa-file-code"></i> <a href="<?php echo $jsonFile; ?>" target="_blank">查看JSON数据</a>
+                </div>
+                <div class="footer-item">
+                    <i class="fab fa-github"></i> <a href="https://github.com/nushena/E5SubWatcher" target="_blank">GitHub</a>
+                </div>
             </div>
             <div class="copyright">
                 &copy; <span id="current-year"><?php echo date('Y'); ?></span> 微软E5检测系统
@@ -531,7 +537,7 @@ if (file_exists($jsonFile)) {
     </div>
 
     <!-- Bootstrap JS Bundle -->
-    <script src="https://cdn.bootcdn.net/ajax/libs/twitter-bootstrap/5.3.7/js/bootstrap.bundle.min.js"></script>
+    <script src="https://s4.zstatic.net/ajax/libs/twitter-bootstrap/5.3.7/js/bootstrap.bundle.min.js"></script>
 
     <script>
         // 主题控制相关代码
