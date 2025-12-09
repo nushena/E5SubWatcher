@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>微软E5订阅通知</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        max-width: 600px;
+        margin: 0 auto;
+        padding: 20px;
+      }
+      .header {
+        background-color: #f8f9fa;
+        padding: 20px;
+        text-align: center;
+        border-radius: 5px 5px 0 0;
+      }
+      .content {
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-top: none;
+        border-radius: 0 0 5px 5px;
+      }
+      .info-item {
+        margin-bottom: 15px;
+        padding: 10px;
+        background-color: #f8f9fa;
+        border-radius: 4px;
+      }
+      .warning {
+        color: #721c24;
+        background-color: #f8d7da;
+        border: 1px solid #f5c6cb;
+        padding: 15px;
+        border-radius: 4px;
+        margin-bottom: 20px;
+      }
+      .footer {
+        margin-top: 20px;
+        font-size: 12px;
+        color: #6c757d;
+        text-align: center;
+      }
+      .button {
+        display: inline-block;
+        background-color: #007bff;
+        color: white;
+        text-decoration: none;
+        padding: 10px 20px;
+        border-radius: 4px;
+        margin-top: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="header">
+      <h1>微软E5订阅通知</h1>
+      <p>{subscription_type} - {status}</p>
+    </div>
+
+    <div class="content">
+      <div class="warning"><strong>⚠️ 注意事项：</strong> {expiry_status}</div>
+
+      <div class="info-item"><strong>订阅邮箱：</strong> {ms_e5_email}</div>
+
+      <div class="info-item"><strong>用户名：</strong> {user_name}</div>
+
+      <div class="info-item">
+        <strong>许可证使用情况：</strong> {used_licenses}/{total_licenses}
+      </div>
+
+      <div
+        class="info-item"
+        style="background-color: {expiry_bg}; border: 2px solid {expiry_border};"
+      >
+        <strong>到期日期：</strong> {expiry_date}
+      </div>
+
+      <div class="info-item">
+        <strong>剩余天数：</strong>
+        <span style="color: {status_color}; font-weight: bold;"
+          >{days_left} 天</span
+        >
+      </div>
+
+      <div class="info-item"><strong>检测时间：</strong> {check_time}</div>
+
+      <div class="info-item"><strong>备份提醒：</strong> {backup_warning}</div>
+
+      <div style="text-align: center">
+        <a href="https://e5.nushen.xyz/" class="button">管理订阅</a>
+      </div>
+    </div>
+
+    <div class="footer">
+      <p>{footer_note}</p>
+      <p>{ignore_notice}</p>
+    </div>
+  </body>
+</html>
