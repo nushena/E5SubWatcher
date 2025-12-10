@@ -101,12 +101,55 @@ def get_json_file_path():
     return os.path.join(PROJECT_ROOT_DIR, JSON_FILENAME)
 
 
-def save_json_data(data, file_path=None):
+def filter_subscription_data(data):
+    """过滤订阅数据，只保留用户必要信息
+
+    Args:
+        data: 完整的订阅数据
+
+    Returns:
+        dict: 过滤后的订阅数据
+    """
+    # 如果是错误信息，直接返回
+    if isinstance(data, dict) and "error" in data:
+        return data
+
+    # 提取基本信息
+    filtered_data = {
+        "sku_name": data.get("sku_name", "未知"),
+        "status": data.get("status", "未知"),
+        "consumed_units": data.get("consumed_units", 0),
+        "total_units": data.get("total_units", 0),
+        "check_time": data.get("check_time", "未知"),
+    }
+
+    # 处理到期信息
+    expiry_info = data.get("expiry_info", {})
+    if isinstance(expiry_info, dict) and "error" not in expiry_info:
+        filtered_expiry_info = {
+            "expiry_date": expiry_info.get("expiry_date", "未知"),
+            "days_left": expiry_info.get("days_left", "未知"),
+            "status": expiry_info.get("status", "未知"),
+        }
+        filtered_data["expiry_info"] = filtered_expiry_info
+    else:
+        # 如果到期信息有错误或不存在，设置默认值
+        filtered_data["expiry_info"] = {
+            "expiry_date": "未知",
+            "days_left": "未知",
+            "status": "未知",
+        }
+
+    return filtered_data
+
+
+def save_json_data(data, file_path=None, filter_data=True):
     """保存数据到JSON文件
 
     Args:
         data: 要保存的数据
         file_path: 文件路径，如果为None则使用默认路径
+        filter_data: 是否过滤数据，只保留用户必要信息
 
     Returns:
         bool: 保存是否成功
@@ -125,9 +168,12 @@ def save_json_data(data, file_path=None):
         if os.path.exists(file_path):
             os.remove(file_path)
 
+        # 过滤数据（如果是订阅数据）
+        data_to_save = filter_subscription_data(data)
+
         # 保存数据
         with open(file_path, "w", encoding="utf-8") as f:
-            json.dump(data, f, ensure_ascii=False, indent=2)
+            json.dump(data_to_save, f, ensure_ascii=False, indent=2)
 
         return True
 
@@ -270,7 +316,6 @@ def check_subscription_status(access_token):
                         "total_units": total,
                         "expiry_info": expiry_info,
                         "check_time": now_shanghai.strftime("%Y-%m-%d %H:%M:%S"),
-                        "raw_data": subscription,
                     }
 
             return {"error": "未找到E5订阅"}
